@@ -1,0 +1,34 @@
+body {
+    background-color: darkseagreen;
+  }
+  
+.headerrow, #messagePane {
+    background-color: rgb(224, 243, 224);
+}
+
+.join_room_response,
+.left_room_response {
+    background-color: rgb(247, 247, 247);
+}
+
+.chat_message {
+    font-size: 125%;
+    color: rgb(0, 0, 0);
+    margin: 1p 1px 1px 1px;
+}
+
+table#game_board {
+    border:4px solid black;
+    margin:0px;
+    padding:0px;
+}
+
+table#game_board td {
+    border:1px solid black;
+    margin:0px;
+    padding:0px;
+}
+
+td.hovered_over:hover {
+    background-image: url('/assets/images/hover.gif');
+}
