@@ -287,10 +287,20 @@ socket.on('game_update', (payload) => {
 
     $("#my_color").html('<h3 id="my_color">I am ' + my_color + '</h3>');
 
+    whitesum= 0;
+    blacksum= 0;
+
 
     /* Animate changes to the board */
     for (let row=0; row < 8; row++) {
         for(let column= 0; column < 8; column++) {
+            if (board[row][column] === 'w') {
+                whitesum++;
+            }
+            else if (board[row][column] === 'b') {
+                blacksum++;
+            }
+
             if(old_board[row][column] != board[row][column]) {
                 let graphic= "";
                 let altTag= "";
@@ -360,6 +370,9 @@ socket.on('game_update', (payload) => {
             }
         }
     }
+    $("#whitesum").html(whitesum);
+    $("#blacksum").html(blacksum);
+
     old_board= board;
 })
 
@@ -374,6 +387,29 @@ socket.on('play_token_response', (payload) => {
     }
 })
 
+socket.on('game_over', (payload) => {
+    if((typeof payload == 'undefined') || (payload === null)) {
+        console.log("Server did not send a payload");
+        return;
+    }
+    if(payload.result === 'fail') {
+        console.log(payload.message);
+        return;
+    }
+
+    /* Announce with a button to the lobby */
+    let nodeA= $("<div id='game_over'></div>");
+    let nodeB= $("<h1>Game Over</h1>");
+    let nodeC= $("<h2>" + payload.who_won + " won!</h2>");
+    let nodeD= $("<a href='lobby.html?username=" + username + "'class='btn btn-lg btn-success' role='button'>Return to lobby</a>");
+    nodeA.append(nodeB);
+    nodeA.append(nodeC);
+    nodeA.append(nodeD);
+    nodeA.hide();
+    $('#game_over').replaceWith(nodeA);
+    nodeA.show("fade", 1000);
+})
+
 /* Set up the socket.io connection to the server */
 $( () => {
     let request= {};
@@ -383,6 +419,8 @@ $( () => {
     socket.emit('join_room', request);
 
     $('#lobbyTitle').html(username + "'s Lobby");
+    $('#quit').html("<a href='lobby.html?username=" + username + "'class='btn btn-lg btn-danger' role='button'>Quit</a>");
+
 
     $('#chatMessage').keypress( function (e)  {
         let key= e.which;

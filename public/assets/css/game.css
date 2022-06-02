@@ -17,13 +17,13 @@ body {
     margin: 1p 1px 1px 1px;
 }
 
-table#game_board {
+table {
     border:4px solid black;
     margin:0px;
     padding:0px;
 }
 
-table#game_board td {
+td {
     border:1px solid black;
     margin:0px;
     padding:0px;
