@@ -44,7 +44,7 @@ function makeInviteButton(socket_id) {
 }
 
 function makeInvitedButton(socket_id) {
-    let newHTML= "<button type='button' class='btn btn-outline-primary'>Invite</button>";
+    let newHTML= "<button type='button' class='btn btn-outline-primary'>Invited</button>";
     let newNode= $(newHTML);
     newNode.click( () => { 
       let payload= {
@@ -189,7 +189,7 @@ socket.on('join_room_response', (payload) => {
     nodeA.show("fade", 1000);
 
     /* Announces new member */
-    let newHTML= '<p class=\'join_room_response\'>' + payload.username + ' joined the chatroom (There are ' + payload.count + ' user(s) in this room)</p>';
+    let newHTML= '<p class=\'join_room_response\'>' + payload.username + ' joined the chatroom (' + payload.count + ' user(s) in this room)</p>';
     let newNode= $(newHTML);
     newNode.hide();
     $('#messages').prepend(newNode);
@@ -211,7 +211,7 @@ socket.on('player_disconnected', (payload) => {
         domElements.hide("fade", 500);
     }
 
-    let newHTML= '<p class=\'left_room_response\'>' + payload.username + ' left the chatroom. (There are ' + payload.count + ' user(s) in this room)</p>';
+    let newHTML= '<p class=\'left_room_response\'>' + payload.username + ' left the chatroom. (' + payload.count + ' user(s) in this room)</p>';
     let newNode= $(newHTML);
     newNode.hide();
     $('#messages').prepend(newNode);
@@ -288,20 +288,22 @@ socket.on('game_update', (payload) => {
 
     
     if (my_color === 'white') {
-        $("#my_color").html('<h3 id="my_color">I am white</h3>');
+        $("#my_color").html('<h3 id="my_color">I am <span class="red-text">RED</span></h3>');
+        $(".headerrow").addClass('red');
     }
     else if (my_color === 'black') {
-        $("#my_color").html('<h3 id="my_color">I am black</h3>');
+        $("#my_color").html('<h3 id="my_color">I am <span class="blue-text">BLUE</span></h3>');
+        $(".headerrow").addClass('blue');
     } 
     else {
         $("#my_color").html('<h3 id="my_color">Error: I don\'t know what color I am</h3>');
     }
 
     if (payload.game.whose_turn === 'white') {
-        $("#my_color").append('<h4>It is white\'s turn</h4>');
+        $("#my_color").append('<h4>It is <span class="red-text">RED\'s</span> turn</h4>');
     }
     else if (payload.game.whose_turn === 'black') {
-        $("#my_color").append('<h4>It is black\'s turn</h4>');
+        $("#my_color").append('<h4>It is <span class="blue-text">BLUE\'s</span> turn</h4>');
     } else {
         $("#my_color").append('<h4>Error: I don\'t know whose turn it is</h4>');
     }
@@ -324,24 +326,24 @@ socket.on('game_update', (payload) => {
                 let graphic= "";
                 let altTag= "";
                 if((old_board[row][column] === '?') && (board[row][column] === ' ')) {
-                    graphic= "whiteEmpty.png";
+                    graphic= "empty.gif";
                     altTag= "empty space";
                 }
                 else if((old_board[row][column] === '?') && (board[row][column] === 'w')) {
-                    graphic= "empty_to_white.gif";
-                    altTag= "white token";
+                    graphic= "red-token.gif";
+                    altTag= "red token";
                 }
                 else if((old_board[row][column] === '?') && (board[row][column] === 'b')) {
-                    graphic= "empty_to_black.gif";
-                    altTag= "black token";
+                    graphic= "blue-token.gif";
+                    altTag= "blue token";
                 }
                 else if((old_board[row][column] === ' ') && (board[row][column] === 'w')) {
-                    graphic= "empty_to_white.gif";
-                    altTag= "white token";
+                    graphic= "red-token.gif";
+                    altTag= "red token";
                 }
                 else if((old_board[row][column] === ' ') && (board[row][column] === 'b')) {
-                    graphic= "empty_to_black.gif";
-                    altTag= "black token";
+                    graphic= "blue-token.gif";
+                    altTag= "blue token";
                 }
                 else if((old_board[row][column] === 'w') && (board[row][column] === ' ')) {
                     graphic= "empty.gif";
@@ -352,12 +354,12 @@ socket.on('game_update', (payload) => {
                     altTag= "empty space";
                 }
                 else if((old_board[row][column] === 'w') && (board[row][column] === 'b')) {
-                    graphic= "white_to_black.gif";
-                    altTag= "black token";
+                    graphic= "red-to-blue.gif";
+                    altTag= "blue token";
                 }
                 else if((old_board[row][column] === 'b') && (board[row][column] === 'w')) {
-                    graphic= "black_to_white.gif";
-                    altTag= "white token";
+                    graphic= "blue-to-red.gif";
+                    altTag= "red token";
                 }
                 else {
                     graphic= "error.gif";
@@ -420,8 +422,8 @@ socket.on('game_update', (payload) => {
     })(payload.game.last_move_time)
     , 1000);
 
-    $("#whitesum").html(whitesum);
-    $("#blacksum").html(blacksum);
+    $("#whitesum").html("<b>" + whitesum + "</b>");
+    $("#blacksum").html("<b>" + blacksum + "</b>");
 
     old_board= board;
 })

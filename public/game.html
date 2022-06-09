@@ -13,7 +13,7 @@
     <div class="container-fluid">
       <div class="row m-3 headerrow">
         <div class="col text-center">
-           <h3 id="gameTitle">Reversi</h3>
+           <h3 id="gameTitle">Reversi: Red vs Blue Edition</h3>
         </div>
       </div>
 
@@ -25,11 +25,11 @@
       <div class="row m-3">
         <div class="col-md-8 text-center justify-content-center">
            <h3 id="my_color">My Color</h3><br/>
-           <img class="img-fluid" src="assets/images/white-token.gif" alt="White Score" />
-           <span id="whitesum">White Sum</span>
+           <img class="img-fluid" src="assets/images/red-token.gif" alt="Red Score" />
+           <span id="whitesum">Red Score</span>
            <span>vs</span>
-           <span id="blacksum">Black Sum</span>
-           <img class="img-fluid" src="assets/images/black-token.gif" alt="Black Score" />
+           <span id="blacksum">Blue Score</span>
+           <img class="img-fluid" src="assets/images/blue-token.gif" alt="Blue Score" />
         </div>
         <div class="col-md-4 text-end justify-content-end">
           <div id="quit">Quit Button</div>
@@ -38,12 +38,21 @@
 
       <div class="row m-3">
         <div clas="col">
+          
           <div class="row align-items-start justify-content-center">
-            <div class="col-md-8 table-responsive">
+            <div class="col-md-8"> 
+              
+            </div>
+            <div class="col-md-4 progress-container">
               <div class="progress">
                 <div id="elapsed" class="progess-bar progress-bar-animated progress-bar-striped bg-success" role="progressbar" style="width:0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
                 </div>
               </div>
+            </div>
+          </div>
+          
+          <div class="row align-items-start justify-content-center">
+            <div class="col-md-8 table-responsive"> 
               <table id="game-board" class="mx-auto w-auto">
                 <tr>
                   <td id="0_0"><img class="img-fluid" src="assets/images/empty.gif" alt="empty" /></td>

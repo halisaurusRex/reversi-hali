@@ -1,34 +1,86 @@
 body {
-    background-color: darkseagreen;
+    background-color: #f2f2f2;
   }
   
-.headerrow, #messagePane {
-    background-color: rgb(224, 243, 224);
+#messagePane {
+    background-color: #dbdbdb;
+    border-radius: 10px;
+    padding: 20px;
+    border:rgb(125, 125, 125) 2px solid;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.red {
+    background-color: rgb(179, 6, 6);
+    border-radius: 0px;
+    padding: 10px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+    font-weight:bold;
+}
+
+.red-text {
+    color:rgb(179, 6, 6);
+    font-weight:bold;
+}
+
+.blue-text {
+    color:rgb(12, 98, 179);
+    font-weight:bold;
+}
+
+.blue {
+    background-color: rgb(12, 98, 179);
+    border-radius: 0px;
+    padding: 10px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+    font-weight:bold;
+}
+
+#messagePane {
+    border-radius: 0px 0px 10px 10px;
 }
 
 .join_room_response,
 .left_room_response {
-    background-color: rgb(247, 247, 247);
+    background-color: #e9e9e9;
+    padding: 0px 15px;
+    margin: 5px 0px;
+    border-radius: 2px;
+    font-style: italic;
+    color: rgb(121, 129, 129)
 }
 
 .chat_message {
     font-size: 125%;
     color: rgb(0, 0, 0);
-    margin: 1p 1px 1px 1px;
+    margin: 10px;
 }
 
 table {
-    border:4px solid black;
+    background-color: rgb(222, 238, 209);
+    border:4px solid rgb(120, 148, 98);
     margin:0px;
     padding:0px;
 }
 
 td {
-    border:1px solid black;
+    border:1px solid rgb(120, 148, 98);
     margin:0px;
     padding:0px;
 }
 
 td.hovered_over:hover {
     background-image: url('/assets/images/hover.gif');
+}
+
+.progress-container {
+    margin: 0px;
+    border-radius: 10px 10px 0px 0px;
+    border-top: 2px solid rgb(125, 125, 125);
+    border-bottom: 0px solid rgb(125, 125, 125);
+    border-right: 2px solid rgb(125, 125, 125);
+    border-left: 2px solid rgb(125, 125, 125);
+    background-color: rgb(125, 125, 125);
 }
